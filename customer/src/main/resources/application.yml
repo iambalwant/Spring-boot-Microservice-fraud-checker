@@ -1,0 +1,22 @@
+server:
+  port: 9898
+
+spring:
+  application:
+    name: customer
+  datasource:
+    username: 'balwant'
+    url: jdbc:postgresql://localhost:5432/customer
+    password: 'password'
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgrsSQLDialect
+          format_sql: 'true'
+      hibernate:
+        ddl-auto: update
+      show-sql: 'true'
+
+
+
+
