@@ -1,7 +1,7 @@
 package com.balwant.customer;
 
 public record CustomerRegistrationRequest(
-        String firstname,
+        String firstName,
         String lastName,
         String email
 ) {
