@@ -18,10 +18,12 @@ public record CustomerService(CustomerRepository customerRepository, RestTemplat
 
 
         FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://localhost:9897/api/v1/fraud-check/{customerId}",
+                "http://FRAUD/api/v1/fraud-check/{customerId}",
+//                "http://localhost:9897/api/v1/fraud-check/{customerId}", //for rest template
                 FraudCheckResponse.class,
                 customer.getId()
         );
+
         if(fraudCheckResponse.isFraudster()){
             throw new IllegalStateException("fraudster");
         }
