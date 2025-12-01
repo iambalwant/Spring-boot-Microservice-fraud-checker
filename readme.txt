@@ -14,3 +14,11 @@ Edit Configuration → Add second config → VM Options:
 Way's we are going to communicate with our microservices
 1.RestTemplate
 2.Distributed Tracing - Eureka Server
+
+For Api gateway we used spring cloud apigateway
+
+eureka : http://eureka:password@localhost:8761/eureka/web
+
+Using keyclock for auth
+url: localhost:9877 and create new realms
+to get endpoint : http://localhost:9983/realms/spring-boot-microservices-realm/.well-known/openid-configuration

@@ -5,6 +5,11 @@ server:
 spring:
   application:
     name: apiGateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9983/realms/spring-boot-microservices-realm
   cloud:
     gateway:
       routes:
@@ -17,9 +22,29 @@ spring:
           uri: lb://FRAUD
           predicates:
             - Path=/api/v1/fraud-check/**
+
+        - id: eureka
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+
+          filters:
+            - RewritePath=/eureka/web, /
+            - RewritePath=/eureka/webjars/(?<remaining>.*), /webjars/${remaining}
+
+        - id: pgadmin
+          uri: http://localhost:5050
+          predicates:
+            - Path=/pgadmin/**
+          filters:
+            - StripPrefix=1
+            - AddRequestHeader=X-Forwarded-Prefix, /pgadmin
+
+
+
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka:password@localhost:8761/eureka
 
 
